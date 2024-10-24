@@ -1,0 +1,155 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <link rel="stylesheet" href="stilus.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kártyák</title>
+    
+</head>
+<body>
+    <div id="gradient">
+
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" onclick="closePopup()">&times;</span>
+                <img src="en.jpg" alt="Fotó" id="popup-photo">
+                <p>
+                    Tóth Leila Anasztázia vagyok, alapvető informatikai ismeretekkel rendelkezek. Célom az
+                    egyetemre marketinggel tovább menni és elvégezni egy judo edzői képzést.
+                </p>
+                <a href="https://www.linkedin.com/in/toth-leila-6690a3291/" id="linkedin" class="card-link">Linkedin</a>
+                <a href="https://www.canva.com/design/DAFYH4Oyi4c/SG_DQM5lagmqhDT2EHMz0Q/view?utm_content=DAFYH4Oyi4c&utm_campaign=designshare&utm_medium=link&utm_source=editor" class="cv-button">CV</a>
+            </div>
+        </div>
+
+        <nav id="navMenu">
+            <ul>
+                <li> <a href='https://sites.google.com/view/ita-tla10b/bemutatkoz%C3%A1s?authuser=0' id="a2">Bemutatkozás</a> </li>
+                <li> <a href='https://sites.google.com/view/ita-tla10b/projekt' id="a2">Projekt</a> </li>
+                <li> <a href='https://sites.google.com/view/ita-tla10b/ita' id="a2">ITA</a> </li>
+                <li> <a href='https://sites.google.com/view/ita-tla10b/web?authuser=0' id="a2">Web</a> </li>
+                <li> <a href='https://sites.google.com/view/ita-tla10b/digikult' id="a2">Digikult</a> </li>
+            </ul>
+        </nav>
+
+        <div id="kozep" class="card-container">
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img width="100%" src="tablazat.png" alt="Elégedettségi kérdőív">
+                        <h3>Értékelő Táblázat</h3>
+
+                    </div>
+                    <div class="card-back">
+                        <p>Grafikus felületű visszajelzőrendszer készítése, miután elküldte a válaszát legyen egy grafikus diagram amin szemlélteti. </p>
+                        <a href="https://tthleila.github.io/k-rd-iv/" class="tovabb">TOVÁBB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img width="100%" src="naprendszer.png" alt="Naprendszer">
+                        <h3>Naprendszer</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Egy naprenszer inspirálta feladat, ahol a bolygók keringenek a nap körül.</p>
+                        <a href="https://tthleila.github.io/naprendszer/" class="tovabb">TOVÁBB</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <img width="100%" src="kuldetes.png" alt="Küldetés">
+                        <h3>Küldetés</h3>
+                    </div>
+                    <div class="card-back">
+                        <p>Olyan alkalmazás létrehozása, mely játékosított formában motiválja( badget szerzésével) a résztvevők kötelező feladatok elvégzésére..</p>
+                        <a href="https://docs.google.com/spreadsheets/d/1gKDKJTV40RpkSNtx3LHQ5X77KeTZwINBu3oH8Teg_b0/edit?usp=sharing" class="tovabb">TOVÁBB</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <br />
+        <div class="parallax"></div>
+        <div id="list">
+            <div class="container">
+                <h1>To-Do List</h1>
+                <form>
+                    <label for="task">Teendők</label>
+                    <input type="text" id="task" name="task" placeholder="Szöveg">
+                    <button type="button" onclick="addTask()">Hozzá add</button>
+                </form>
+                <ul id="task-list"></ul>
+            </div>
+        </div>
+        <div class="parallax"></div>
+        <button id="sotetModGomb" onclick="toggleSotetMod()">Sötét mód</button>
+    </div>
+
+        <script>
+            function showPopup() {
+                const popup = document.getElementById('popup');
+                popup.style.display = 'block'; 
+            }
+
+            function closePopup() {
+                const popup = document.getElementById('popup');
+                popup.style.display = 'none'; 
+            }
+
+     
+            window.onload = function () {
+                showPopup();
+            };
+
+
+            function flipCard(card) {
+               
+                var toast = document.getElementById('toast');
+                toast.style.display = 'block';
+
+              
+                setTimeout(function () {
+                    toast.style.display = 'none';
+                }, 2000); 
+
+                
+                card.querySelector('.card-inner').classList.toggle('flipped');
+            }
+
+            function toggleSotetMod() {
+                var body = document.body;
+                body.classList.toggle("dark-mode");
+            }
+
+            function closeToast() {
+                var toast = document.getElementById('toast');
+                toast.style.display = 'none';
+            }
+            function addTask() {
+                var taskInput = document.getElementById("task");
+                var taskValue = taskInput.value;
+                var li = document.createElement("li");
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                li.appendChild(checkbox);
+                var textNode = document.createTextNode(taskValue);
+                li.appendChild(textNode);
+                var ul = document.getElementById("task-list");
+                ul.appendChild(li);
+                taskInput.value = "";
+            }
+       
+
+        </script>
+</body>
+</html>
